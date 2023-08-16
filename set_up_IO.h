@@ -4,7 +4,11 @@
 /*IO_control parametrs (io_type, io_group_number, io_number)*/
 /*io_type : 0 - digital input
             1 - digital output
-            2 - relay output*/
+            2 - relay output
+                                io_group 1-2
+                                relay 1-5 io_group 2
+                                digital OUTPUT 1-4 group 1
+                                digital INPUT 1-4 group 1*/
 
 IO_control relay_1 (2,2,1);
 IO_control relay_2 (2,2,2);
