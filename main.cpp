@@ -12,6 +12,9 @@ int main (){
     cout << "\n START program main \n";
     //outputs[4].set_low();
     delay();
+    for (int i=0; i<4; i++){
+        outputs [i].set_low();
+    }
     relays[0].set_high();
     relays[1].set_high();
     delay ();
@@ -24,6 +27,10 @@ int main (){
     delay();
       
     delay ();
+    for (int i = 0; i<4; i++){
+        outputs [i].set_high();
+    }
+
 
     for (int i=1; i<5; i++){            
         if (inputs [1].get_status()== true){
