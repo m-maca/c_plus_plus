@@ -33,6 +33,10 @@ IO_control inputs [4] = {IO_control (0,1,1), IO_control (0,1,2), IO_control (0,1
 //IO_control outputs [4]= {IO_control (1,1,1), IO_control (1,1,2), IO_control (1,1,3), IO_control (1,1,4)};
 IO_control outputs [4];
 
+void initialize_digital_inputs (){
+    
+}
+
 void initialize_digital_outputs (){
     for (int i= 0; i<4; i++){
         outputs [i].set_up_IO (1,1,(i+1));  
