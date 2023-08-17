@@ -9,7 +9,8 @@
                                 relay 1-5 io_group 2
                                 digital OUTPUT 1-4 group 1
                                 digital INPUT 1-4 group 1*/
-
+//old version of IO setup
+/*
 IO_control relay_1 (2,2,1);
 IO_control relay_2 (2,2,2);
 IO_control relay_3 (2,2,3);
@@ -25,9 +26,18 @@ IO_control output_1 (1,1,1);
 IO_control output_2 (1,1,2);
 IO_control output_3 (1,1,3);
 IO_control output_4 (1,1,4);
+*/
 
+IO_control relays [5] = {IO_control (2,2,1), IO_control (2,2,2), IO_control (2,2,3), IO_control (2,2,4),IO_control(2,2,5)};
+IO_control inputs [4] = {IO_control (0,1,1), IO_control (0,1,2), IO_control (0,1,3), IO_control (0,1,4)};
+//IO_control outputs [4]= {IO_control (1,1,1), IO_control (1,1,2), IO_control (1,1,3), IO_control (1,1,4)};
+IO_control outputs [4];
 
-IO_control relays [2];
+void initialize_digital_outputs (){
+    for (int i= 0; i<4; i++){
+        outputs [i].set_up_IO (1,1,(i+1));  
+    }
+}
 
 
 #endif

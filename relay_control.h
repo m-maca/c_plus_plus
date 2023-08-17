@@ -10,12 +10,17 @@ void delay ();
 
 class IO_control {
     public:
-        IO_control (int type_number, int group_number, int io_number){
+        IO_control (){
+
+        }
+        void set_up_IO (int type_number, int group_number, int io_number){
             type_num = type_number;
             group_num = group_number;
             io_num = io_number;
             address = get_io_address ();
-
+        }
+        IO_control (int type_number, int group_number, int io_number){
+            set_up_IO(type_number, group_number,io_number);
         } 
         void set_output (bool status){
             if (status == true){
