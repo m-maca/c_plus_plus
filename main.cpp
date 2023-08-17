@@ -10,7 +10,21 @@ int main (){
     test_all_digital_outputs();
     initialize_digital_outputs ();
     cout << "\n START program main \n";
-    //outputs[4].set_low();
+    for (int i = )
+        
+    printf ("\n END program main  \n");
+
+    return 0;
+};
+
+void delay (){
+    uint64_t timer1= 0;
+    printf ("wait  \n");
+    while (timer1< 499000000){
+        timer1 ++;
+    }
+}
+void old_testing_commands_from_main (){
     delay();
     for (int i=0; i<4; i++){
         outputs [i].set_low();
@@ -18,8 +32,7 @@ int main (){
     relays[0].set_high();
     relays[1].set_high();
     delay ();
-   // outputs [3].set_high();
-   // outputs [2].set_high();
+
     outputs [1].set_high();
         
     bool input_1_status = inputs [1].get_status();
@@ -36,17 +49,5 @@ int main (){
         if (inputs [1].get_status()== true){
             printf ("input 1 is in HIGH state");
         }
-    }
-        
-    printf ("\n END program main  \n");
-
-    return 0;
-};
-
-void delay (){
-    uint64_t timer1= 0;
-    printf ("wait  \n");
-    while (timer1< 499000000){
-        timer1 ++;
     }
 }

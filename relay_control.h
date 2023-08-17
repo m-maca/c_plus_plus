@@ -11,7 +11,6 @@ void delay ();
 class IO_control {
     public:
         IO_control (){
-
         }
         void set_up_IO (int type_number, int group_number, int io_number){
             type_num = type_number;
