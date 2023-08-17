@@ -26,4 +26,8 @@ IO_control output_2 (1,1,2);
 IO_control output_3 (1,1,3);
 IO_control output_4 (1,1,4);
 
+
+IO_control relays [2];
+
+
 #endif
