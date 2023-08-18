@@ -6,7 +6,7 @@
 #include <fstream>
 #include <string>
 
-#include "relay_control.h"
+#include "class_IO_control.h"
 #include "utility_functions.h"
 
 
