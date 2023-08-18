@@ -8,7 +8,7 @@
 
 #include "class_IO_control.h"
 #include "utility_functions.h"
-#include "set_up_IO.h"
+#include "IO_set_up.h"
 #include "test_IO.h"
 
 #endif

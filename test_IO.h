@@ -22,8 +22,12 @@ void test_all_digital_inputs(){
 void test_all_digital_outputs(){
     test_sets_of_outputs (outputs);
 }
+void test_all_internal_LEDs(){
+    test_sets_of_outputs (internal_LEDs);
+}
 void test_all_IOs(){
     test_all_relay_outputs();
     test_all_digital_outputs();
+    test_all_internal_LEDs();
 }
 #endif
