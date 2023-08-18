@@ -39,7 +39,14 @@ void IO_control::initialize_IO(int type_number, int group_number, int io_number)
     address = get_io_address ();
     initialized = true;
 }
-
+string IO_control::get_io_address (){
+    string Sio_type = get_io_type ();
+    string Sgroup_number = to_string (group_num);
+    string Sio_num = to_string (io_num);
+    string register_address = "/run/unipi/io_group" + Sgroup_number + "/" + Sio_type + "_" + Sgroup_number + "_0" + Sio_num + "/" + Sio_type + "_value";
+    print_me (register_address);
+    return register_address;
+}
 void IO_control::set_output(bool status){
     if (status == true){
         set_high ();
@@ -83,16 +90,9 @@ void IO_control::set_low (){
 
     }
 }
-string IO_control::get_io_address (){
-    string Sio_type = get_io_type ();
-    string Sgroup_number = to_string (group_num);
-    string Sio_num = to_string (io_num);
-    string register_address = "/run/unipi/io_group" + Sgroup_number + "/" + Sio_type + "_" + Sgroup_number + "_0" + Sio_num + "/" + Sio_type + "_value";
-    print_me (register_address);
-    return register_address;
-}
+
 string IO_control::get_io_type (){
-    const static string type_array []= {"di","do","ro"};
+    const static string type_array []= {"di","do","ro",""};
 
     string io_type = type_array [type_num];
     
