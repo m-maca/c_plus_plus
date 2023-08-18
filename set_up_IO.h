@@ -20,7 +20,7 @@ void initialize_set_of_IOs (IO_control IO_name[8], int IO_type, int group_number
     number_of_IOs ++;
     cout << number_of_IOs + "\n";
     for (int i = 1; i<number_of_IOs; i++){
-        IO_name [i].set_up_IO (IO_type,group_number, i);
+        IO_name [i].initialize_IO (IO_type,group_number, i);
     }
 }
 void initialize_digital_inputs (){

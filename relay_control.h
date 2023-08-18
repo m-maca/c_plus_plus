@@ -3,32 +3,15 @@
 
 #include "my_definitions.h"
 
-
 using namespace std;
-
-
 
 class IO_control {
     public:
-        IO_control (){
-        }
-        void set_up_IO (int type_number, int group_number, int io_number){
-            type_num = type_number;
-            group_num = group_number;
-            io_num = io_number;
-            address = get_io_address ();
-            initialized = true;
-        }
-        IO_control (int type_number, int group_number, int io_number){
-            set_up_IO(type_number, group_number,io_number);
-        } 
-        void set_output (bool status){
-            if (status == true){
-                set_high ();
-            }else{
-                set_low ();
-            }
-        }
+        IO_control ();
+        IO_control (int type_number, int group_number, int io_number);
+        void initialize_IO (int type_number, int group_number, int io_number);
+
+        void set_output (bool status);
         bool get_status (){
             string status;
             ifstream stat (address);
@@ -92,7 +75,26 @@ class IO_control {
             cout << to_be_printed + "\n";
         }
 };
+IO_control::IO_control(){
+    
+}
+IO_control::IO_control(int type_number, int group_number, int io_number){
+    initialize_IO(type_number, group_number, io_number);
+}
+void IO_control::initialize_IO(int type_number, int group_number, int io_number){
+    type_num = type_number;
+    group_num = group_number;
+    io_num = io_number;
+    address = get_io_address ();
+    initialized = true;
+}
 
-
+void IO_control::set_output(bool status){
+    if (status == true){
+        set_high ();
+    }else{
+        set_low ();
+    }
+}
 
 #endif
