@@ -4,7 +4,7 @@
 
 
 void test_sets_of_outputs (IO_control test_type[8]){
-    for (int i=1; i<8; i++){
+    for (int i=0; i<8; i++){
         test_type [i].set_high();
         my_delay ();
         test_type [i].set_low();

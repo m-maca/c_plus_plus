@@ -19,34 +19,34 @@ IO_control outputs [8];
 IO_control relays [8];
 IO_control internal_LEDs [8];
 
-void initialize_set_of_IOs (IO_control IO_name[8], int IO_type, int group_number, int number_of_IOs){
+void initialize_set_of_IOs (IO_control IO_name[8], int IO_type, int group_number, int number_of_IOs, int start_number){
     number_of_IOs ++;
     cout << number_of_IOs + "\n";
-    for (int i = 1; i<number_of_IOs; i++){
+    for (int i = start_number; i<number_of_IOs; i++){
         IO_name [i].initialize_IO (IO_type,group_number, i);
     }
 }
 void initialize_digital_inputs (){
     printf ("initializing inputs \n");
-    initialize_set_of_IOs (inputs, digital_input, first_section, 4);
-    initialize_set_of_IOs (inputs2, digital_input, second_section, 4);
+    initialize_set_of_IOs (inputs, digital_input, first_section, 4, 1);
+    initialize_set_of_IOs (inputs2, digital_input, second_section, 4, 1);
     printf ("init inputs end \n");
 }
 
 void initialize_digital_outputs (){
     printf ("initializing outputs \n");
-    initialize_set_of_IOs (outputs, digital_output, first_section, 4);
+    initialize_set_of_IOs (outputs, digital_output, first_section, 4, 1);
     printf ("init outputs end \n");
 }
 
 void initialize_relay_outputs (){
     printf ("initializing relays \n");
-    initialize_set_of_IOs (relays, relay_output, second_section, 5);
+    initialize_set_of_IOs (relays, relay_output, second_section, 5, 1);
     printf ("init relays end \n");
 } 
 void initialize_internal_LEDs(){
     printf ("initializing internal LEDs \n");
-    initialize_set_of_IOs (internal_LEDs, internal_LED, first_section, 4);
+    initialize_set_of_IOs (internal_LEDs, internal_LED, first_section, 3, 0); 
     printf ("init LEDs end \n");
 }
 void initialize_all_IOs(){

@@ -43,11 +43,12 @@ string IO_control::get_io_address (){
     string Sio_type = get_io_type ();
     string Sgroup_number = to_string (group_num);
     string Sio_num = to_string (io_num);
+    string register_address;
     if (type_num==3){
-        string register_address = "/run/unipi/io_group" + Sgroup_number + "/leds/unipi:green:uled-"  + Sio_num + "/brightness";
+        register_address = "/run/unipi/io_group" + Sgroup_number + "/leds/unipi:green:uled-x"  + Sio_num + "/brightness";
     }else{
-        string register_address = "/run/unipi/io_group" + Sgroup_number + "/" + Sio_type + "_" + Sgroup_number + "_0" + Sio_num + "/" + Sio_type + "_value";
-    }
+        register_address = "/run/unipi/io_group" + Sgroup_number + "/" + Sio_type + "_" + Sgroup_number + "_0" + Sio_num + "/" + Sio_type + "_value";
+    };
     print_me (register_address);
     return register_address;
 }
