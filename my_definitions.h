@@ -4,8 +4,11 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
-#include "relay_control.h"
 #include <string>
+
+#include "relay_control.h"
+#include "utility_functions.h"
+
 
 #include "set_up_IO.h"
 #include "test_IO.h"

@@ -3,43 +3,44 @@
 
 using namespace std;
 
-void delay ();
 
 
 int main (){
-    test_all_digital_outputs();
-    initialize_digital_outputs ();
+    initialize_all_IOs();
+    test_all_IOs();
+/*
     cout << "\n START program main \n";
-    for (int i = )
-        
+    for (int i = 1; i<8; i++){
+        relays [i].set_high();
+        outputs [i].set_high();
+        my_delay ();
+        relays [i].set_low();
+        outputs [i].set_low();
+        my_delay ();
+    }
+*/      
     printf ("\n END program main  \n");
 
     return 0;
 };
 
-void delay (){
-    uint64_t timer1= 0;
-    printf ("wait  \n");
-    while (timer1< 499000000){
-        timer1 ++;
-    }
-}
+
 void old_testing_commands_from_main (){
-    delay();
+    my_delay();
     for (int i=0; i<4; i++){
         outputs [i].set_low();
     }
     relays[0].set_high();
     relays[1].set_high();
-    delay ();
+    my_delay ();
 
     outputs [1].set_high();
         
     bool input_1_status = inputs [1].get_status();
     cout << "\n  input 1  " + to_string (input_1_status) + "\n";
-    delay();
+    my_delay();
       
-    delay ();
+    my_delay ();
     for (int i = 0; i<4; i++){
         outputs [i].set_high();
     }

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void delay ();
+
 
 class IO_control {
     public:
@@ -17,6 +17,7 @@ class IO_control {
             group_num = group_number;
             io_num = io_number;
             address = get_io_address ();
+            initialized = true;
         }
         IO_control (int type_number, int group_number, int io_number){
             set_up_IO(type_number, group_number,io_number);
@@ -43,22 +44,31 @@ class IO_control {
             return io_state;
         }
         void set_high (){
-            ofstream output_control (address);
-            output_control << "1";
-            print_me(address+" - 1");
-            output_control.close();
+            if (initialized == true){
+                ofstream output_control (address);
+                output_control << "1";
+                print_me(address+" - 1");
+                output_control.close();
+            } else {
+                print_me ("this IO has not been initialized");
+            }
         }
         void set_low (){
-            ofstream output_control (address);
-            output_control << "0";
-            print_me (address+" - 0");
-            output_control.close();
+            if (initialized == true){
+                ofstream output_control (address);
+                output_control << "0";
+                print_me (address+" - 0");
+                output_control.close();
+            } else {
+
+            }
         }
 
     private: 
         int type_num, group_num, io_num;
-        string IO_name;
-        string address;
+        string IO_name = "not initialized";
+        string address = "not initialized";
+        bool initialized = false;
         string get_io_address (){
             string Sio_type = get_io_type ();
             string Sgroup_number = to_string (group_num);
