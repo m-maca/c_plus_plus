@@ -8,6 +8,7 @@ void test_sets_of_outputs (IO_control test_type[8]){
         test_type [i].set_high();
         my_delay ();
         test_type [i].set_low();
+        my_delay ();
     }
 }
 uint64_t my_new_variable = 10;
