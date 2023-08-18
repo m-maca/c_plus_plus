@@ -47,6 +47,18 @@ string IO_control::get_io_address (){
     print_me (register_address);
     return register_address;
 }
+string IO_control::get_io_type (){
+    const static string IO_type_array []= {"di","do","ro",""};
+
+    string io_type = IO_type_array [type_num];
+    
+    return io_type;
+}
+string IO_control::get_IO_name (){
+    
+    return IO_name;
+}
+
 void IO_control::set_output(bool status){
     if (status == true){
         set_high ();
@@ -90,22 +102,8 @@ void IO_control::set_low (){
 
     }
 }
-
-string IO_control::get_io_type (){
-    const static string type_array []= {"di","do","ro",""};
-
-    string io_type = type_array [type_num];
-    
-    return io_type;
-}
-string IO_control::get_IO_name (){
-    
-    return IO_name;
-}
 void IO_control::print_me (string to_be_printed){
     cout << to_be_printed + "\n";
 }
-
-
 
 #endif

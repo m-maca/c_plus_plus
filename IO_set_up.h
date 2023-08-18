@@ -1,5 +1,6 @@
 #ifndef set_up_io_h
 #define set_up_io_h
+#include "my_definitions.h"
 
 enum IOs {digital_input=0, digital_output, relay_output,internal_LED};
 enum section_number {first_section = 1, second_section = 2, third_section = 3};
@@ -13,6 +14,7 @@ enum section_number {first_section = 1, second_section = 2, third_section = 3};
     digital INPUT 1-4 group 1*/
 
 IO_control inputs [8];
+IO_control inputs2 [8];
 IO_control outputs [8];
 IO_control relays [8];
 IO_control internal_LEDs [8];
@@ -25,18 +27,27 @@ void initialize_set_of_IOs (IO_control IO_name[8], int IO_type, int group_number
     }
 }
 void initialize_digital_inputs (){
-    initialize_set_of_IOs (inputs, first_section, digital_input,4);
+    printf ("initializing inputs \n");
+    initialize_set_of_IOs (inputs, digital_input, first_section, 4);
+    initialize_set_of_IOs (inputs2, digital_input, second_section, 4);
+    printf ("init inputs end \n");
 }
 
 void initialize_digital_outputs (){
-    initialize_set_of_IOs (outputs, first_section, digital_output,4);
+    printf ("initializing outputs \n");
+    initialize_set_of_IOs (outputs, digital_output, first_section, 4);
+    printf ("init outputs end \n");
 }
 
 void initialize_relay_outputs (){
-    initialize_set_of_IOs (relays, second_section, relay_output,5);
+    printf ("initializing relays \n");
+    initialize_set_of_IOs (relays, relay_output, second_section, 5);
+    printf ("init relays end \n");
 } 
 void initialize_internal_LEDs(){
-    initialize_set_of_IOs (internal_LEDs, first_section, internal_LED, 4);
+    printf ("initializing internal LEDs \n");
+    initialize_set_of_IOs (internal_LEDs, internal_LED, first_section, 4);
+    printf ("init LEDs end \n");
 }
 void initialize_all_IOs(){
     initialize_digital_inputs();
