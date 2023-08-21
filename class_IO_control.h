@@ -14,6 +14,7 @@ class IO_control {
         bool get_status ();
         void set_high ();
         void set_low ();
+        bool get_initialized_status ();
 
     private: 
         int type_num, group_num, io_num;
@@ -111,4 +112,7 @@ void IO_control::print_me (string to_be_printed){
     cout << to_be_printed + "\n";
 }
 
+bool IO_control::get_initialized_status (){
+    return initialized;
+}
 #endif
