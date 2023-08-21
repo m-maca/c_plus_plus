@@ -1,7 +1,6 @@
 #ifndef test_io_h_
 #define test_io_h_
 
-
 int get_last_initialized_IO(IO_control IO_type[8]){
     for (int i=1; i<8; i++){
         bool actual_status;
@@ -21,6 +20,7 @@ int get_first_initialized_IO(IO_control IO_type[8]){
     return 10;
 }
 
+
 void test_sets_of_outputs (IO_control IO_type_to_be_tested [8]){
     int last_IO_in_group=(get_last_initialized_IO(IO_type_to_be_tested));
     int first_initialized_IO = (get_first_initialized_IO(IO_type_to_be_tested));
@@ -31,8 +31,6 @@ void test_sets_of_outputs (IO_control IO_type_to_be_tested [8]){
         my_delay ();
     }
 }
-uint64_t my_new_variable = 10;
-
 
 void test_all_relay_outputs (){
     test_sets_of_outputs (relays);
