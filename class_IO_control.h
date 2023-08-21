@@ -1,7 +1,5 @@
 #ifndef relay_control_h
-#define realy_control_h
-
-#include "my_definitions.h"
+#define relay_control_h
 
 using namespace std;
 
@@ -24,6 +22,7 @@ class IO_control {
         string get_io_address ();
         string get_io_type ();
         string get_IO_name ();
+        string initialize_name ();
         void print_me (string to_be_printed);
 };
 
@@ -38,6 +37,7 @@ void IO_control::initialize_IO(int type_number, int group_number, int io_number)
     group_num = group_number;
     io_num = io_number;
     address = get_io_address ();
+    IO_name = initialize_name ();
     initialized = true;
 }
 string IO_control::get_io_address (){
@@ -54,7 +54,7 @@ string IO_control::get_io_address (){
     return register_address;
 }
 string IO_control::get_io_type (){
-    const static string IO_type_array []= {"di","do","ro",""};
+    const static string IO_type_array []= {"di","do","ro","xled"};
 
     string io_type = IO_type_array [type_num];
     
@@ -86,15 +86,15 @@ bool IO_control::get_status (){
     }else{
         print_me ("error input status");
     }
-    string print_output = address + " - " + to_string (io_state);
-    print_me (print_output);
+    string print_status = IO_name + " __ state " + to_string (io_state);
+    print_me (print_status);
     return io_state;
 }
 void IO_control::set_high (){
     if (initialized == true){
         ofstream output_control (address);
         output_control << "1";
-        print_me(address+" - 1");
+        print_me(IO_name + " __ state 1");
         output_control.close();
     } else {
         print_me ("this IO has not been initialized");
@@ -104,7 +104,7 @@ void IO_control::set_low (){
     if (initialized == true){
         ofstream output_control (address);
         output_control << "0";
-        print_me (address+" - 0");
+        print_me (IO_name +" __ state 0");
         output_control.close();
     } else {
 
@@ -116,5 +116,12 @@ void IO_control::print_me (string to_be_printed){
 
 bool IO_control::get_initialized_status (){
     return initialized;
+}
+
+string IO_control::initialize_name (){
+    string name_string;
+    const static string IO_type_name [] = {"digital input ", "digital output", "relay output  " , "user LED      "};
+    name_string = IO_type_name [type_num] + " - " + to_string (group_num) + "." + to_string (io_num);
+    return name_string;
 }
 #endif
