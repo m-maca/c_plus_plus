@@ -50,22 +50,34 @@ void test_all_relay_outputs (){
     printf ("testing relays\n");
     test_sets_of_outputs (relays);
     printf ("testing relays end\n");
+    printf ("----------------------------\n");
 }
 void test_all_digital_inputs(){
     printf ("testing inputs\n");
     test_sets_of_inputs (inputs);
     printf ("testing inputs end\n");
+    printf ("----------------------------\n");
 }
 void test_all_digital_outputs(){
+    printf ("testing outputs\n");
     test_sets_of_outputs (outputs);
+    printf ("testing outputs end\n");
+    printf ("----------------------------\n");
 }
 void test_all_internal_LEDs(){
+    printf ("testing user LEDs \n");
     test_sets_of_outputs (internal_LEDs);
+    printf ("testing user LEDs end\n");
+    printf ("----------------------------\n");
 }
 void test_all_IOs(){
+    printf ("test all IOs function started \n");
+    printf ("----------------------------\n");
     test_all_relay_outputs();
     test_all_digital_outputs();
     test_all_internal_LEDs();
     test_all_digital_inputs();
+    printf ("test all IOs function end\n");
+    printf ("----------------------------\n");
 }
 #endif
