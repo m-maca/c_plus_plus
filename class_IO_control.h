@@ -86,6 +86,8 @@ bool IO_control::get_status (){
     }else{
         print_me ("error input status");
     }
+    string print_output = address + " - " + to_string (io_state);
+    print_me (print_output);
     return io_state;
 }
 void IO_control::set_high (){
