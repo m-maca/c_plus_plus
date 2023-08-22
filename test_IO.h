@@ -31,15 +31,15 @@ void test_sets_of_outputs (IO_control IO_type_to_be_tested [8]){
         my_delay ();
     }
 }
-void test_sets_of_inputs (IO_control IO_type_to_be_tested [8]){
+void test_sets_of_inputs (IO_control IO_type_to_be_tested [8], int contolling_relay_number){
     int last_IO_in_group = (get_last_initialized_IO(IO_type_to_be_tested));
     int first_initialized_IO = (get_first_initialized_IO(IO_type_to_be_tested));
     for (int i = first_initialized_IO; i<last_IO_in_group; i++){
-        relays [3].set_high();
+        relays [contolling_relay_number].set_high();
         my_delay();
         bool status = IO_type_to_be_tested [i].get_status();
         my_delay();
-        relays [3].set_low ();
+        relays [contolling_relay_number].set_low ();
         my_delay();
         status = IO_type_to_be_tested [i].get_status();
         my_delay();
@@ -48,24 +48,32 @@ void test_sets_of_inputs (IO_control IO_type_to_be_tested [8]){
 
 void test_all_relay_outputs (){
     printf ("testing relays\n");
+    printf ("--------------\n");
     test_sets_of_outputs (relays);
     printf ("testing relays end\n");
     printf ("----------------------------\n");
 }
 void test_all_digital_inputs(){
     printf ("testing inputs\n");
-    test_sets_of_inputs (inputs);
+    printf ("--------------\n");
+    test_sets_of_inputs (inputs,3);
+    printf ("--------------\n");
+    printf ("inputs group 2\n");
+    printf ("--------------\n");
+    test_sets_of_inputs (inputs2,2);
     printf ("testing inputs end\n");
     printf ("----------------------------\n");
 }
 void test_all_digital_outputs(){
     printf ("testing outputs\n");
+    printf ("---------------\n");
     test_sets_of_outputs (outputs);
     printf ("testing outputs end\n");
     printf ("----------------------------\n");
 }
 void test_all_internal_LEDs(){
     printf ("testing user LEDs \n");
+    printf ("-----------------\n");
     test_sets_of_outputs (internal_LEDs);
     printf ("testing user LEDs end\n");
     printf ("----------------------------\n");
