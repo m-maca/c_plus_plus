@@ -47,7 +47,7 @@ string IO_control::get_io_address (){
     string register_address;
     if (type_num==3){
         register_address = "/run/unipi/io_group" + Sgroup_number + "/leds/unipi:green:uled-x"  + Sio_num + "/brightness";
-    }else{
+    }else {
         register_address = "/run/unipi/io_group" + Sgroup_number + "/" + Sio_type + "_" + Sgroup_number + "_0" + Sio_num + "/" + Sio_type + "_value";
     };
     print_me (register_address);
