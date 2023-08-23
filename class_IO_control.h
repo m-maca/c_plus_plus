@@ -1,5 +1,5 @@
-#ifndef relay_control_h
-#define relay_control_h
+#ifndef relay_control_h_
+#define relay_control_h_
 
 using namespace std;
 
