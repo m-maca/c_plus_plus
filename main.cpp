@@ -1,9 +1,6 @@
 #include "my_definitions.h"
 
-
 using namespace std;
-
-
 
 int main (){
     printf  ("\n here the program main starts\n");
