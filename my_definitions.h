@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono>
+#include <thread>
 
 #include "class_IO_control.h"
 #include "class_analog_IO_control.h"
