@@ -89,14 +89,19 @@ void open_door(){
 void accelerate_motor_to_speed (int speed_in_percent) {
     int initial_pulse_delay = 500;
     int variable_pulse_delay = initial_pulse_delay;
-    int terminal_pulse_delay = ((min_pulse_delay *100)/speed_in_percent);
-         
-    for (int i=1; i<= pulses_per_revolution*3; i++){
+    int terminal_pulse_delay = ((min_pulse_delay *100)/speed_in_percent);   
+
+    for (int i=1; i >= (pulses_per_revolution*3); i++){
         outputs [3].set_high();
         sleep_for(microseconds (variable_pulse_delay));
         outputs [3].set_low();
         sleep_for(microseconds (variable_pulse_delay));
-
+        if (variable_pulse_delay > terminal_pulse_delay){
+            variable_pulse_delay --;
+            cout<< variable_pulse_delay;
+        }
     }
+
+
 }
 
