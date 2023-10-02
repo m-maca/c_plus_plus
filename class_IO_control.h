@@ -94,7 +94,7 @@ void IO_control::set_high (){
     if (initialized == true){
         ofstream output_control (address);
         output_control << "1";
-        print_me(IO_name + " __ state 1");
+       // print_me(IO_name + " __ state 1");
         output_control.close();
     } else {
         print_me ("this IO has not been initialized");
@@ -104,7 +104,7 @@ void IO_control::set_low (){
     if (initialized == true){
         ofstream output_control (address);
         output_control << "0";
-        print_me (IO_name +" __ state 0");
+      //  print_me (IO_name +" __ state 0");
         output_control.close();
     } else {
 

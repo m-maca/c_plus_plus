@@ -9,6 +9,7 @@ int min_pulse_delay = 10; //microseconds
 void test_motor_enable_bit();
 void rotate_stepper(int turn_degrees);
 void enable_motor_control();
+void accelerate_motor_to_speed (int speed_in_percent);
 
 int main (){
     printf  ("\n here the program main starts\n");
@@ -16,9 +17,9 @@ int main (){
 
   //  test_motor_enable_bit();
     enable_motor_control();
-
+    accelerate_motor_to_speed(100);
   //  for (int i=1; i<=20; i++){
-        rotate_stepper(10);
+      //  rotate_stepper(10);
         my_delay(2);
  //   }
     printf ("\n END program main  \n");
@@ -27,13 +28,13 @@ int main (){
 
 void enable_motor_control (){
     outputs [1].set_low();
-    printf ("/n motor enabled");
+    printf ("\n motor enabled");
     sleep_for (milliseconds (400));
 }
 
 void disable_motor_control (){
     outputs [1].set_high();
-    printf ("/n motor disabled");
+    printf ("\n motor disabled");
     sleep_for (milliseconds (400));
 }
 
@@ -78,7 +79,7 @@ bool stepper_driver_in_error (){
 
 void open_door(){
     if (stepper_driver_in_error () == true){
-        printf ("/n error stepper driver");
+        printf ("\n error stepper driver");
         return;
     }else{
 
@@ -90,14 +91,17 @@ void accelerate_motor_to_speed (int speed_in_percent) {
     int initial_pulse_delay = 500;
     int variable_pulse_delay = initial_pulse_delay;
     int terminal_pulse_delay = ((min_pulse_delay *100)/speed_in_percent);   
-
-    for (int i=1; i >= (pulses_per_revolution*3); i++){
+    printf ("\n terminal_pulse_delay in microseconds:");
+    cout<< terminal_pulse_delay;
+ 
+    for (int i=1; i <= (pulses_per_revolution*3); i++){
         outputs [3].set_high();
         sleep_for(microseconds (variable_pulse_delay));
         outputs [3].set_low();
         sleep_for(microseconds (variable_pulse_delay));
         if (variable_pulse_delay > terminal_pulse_delay){
             variable_pulse_delay --;
+            printf ("\n variable_pulse_delay");
             cout<< variable_pulse_delay;
         }
     }
