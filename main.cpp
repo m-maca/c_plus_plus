@@ -87,9 +87,9 @@ void open_door(){
 }
 
 void accelerate_motor_to_speed (int speed_in_percent) {
-    int initial_speed = 500;
-    int variable_pulse_delay = initial_speed;
-    int terminal_speed = ((min_pulse_delay *100)/speed_in_percent);
+    int initial_pulse_delay = 500;
+    int variable_pulse_delay = initial_pulse_delay;
+    int terminal_pulse_delay = ((min_pulse_delay *100)/speed_in_percent);
          
     for (int i=1; i<= pulses_per_revolution*3; i++){
         outputs [3].set_high();
@@ -99,3 +99,4 @@ void accelerate_motor_to_speed (int speed_in_percent) {
 
     }
 }
+
