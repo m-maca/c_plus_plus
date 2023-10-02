@@ -6,16 +6,17 @@ using namespace std::chrono;
 
 void test_motor_enable_bit();
 void rotate_stepper();
-
+void enable_motor_control();
 
 int main (){
     printf  ("\n here the program main starts\n");
     initialize_all_IOs();
 
-    test_motor_enable_bit();
-
+  //  test_motor_enable_bit();
+    enable_motor_control();
     rotate_stepper();
-
+    outputs [2].set_high();
+    rotate_stepper();
 
     printf ("\n END program main  \n");
     return 0;
@@ -43,10 +44,20 @@ void test_motor_enable_bit (){
 }
 
 void rotate_stepper (){
-    for (int i=1; i<100; i++){  //100x pulse
+    for (int i=1; i<10000; i++){  //100x pulse
         outputs[3].set_high(); 
         sleep_for(microseconds (100));
         outputs[3].set_low();
         sleep_for(microseconds (100));
+    }
+}
+
+void rotate_stepper (int degrees){
+    int mimimum_pulse_delay = 100;
+    for (int i=1; i<200; i++){
+        outputs[3].set_high();
+        sleep_for(microseconds (mimimum_pulse_delay));
+        outputs[3].set_low();
+        sleep_for(microseconds (mimimum_pulse_delay));
     }
 }
