@@ -4,6 +4,8 @@ using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
 
+int pulses_per_revolution = 800;
+int min_pulse_delay = 10; //microseconds
 void test_motor_enable_bit();
 void rotate_stepper(int turn_degrees);
 void enable_motor_control();
@@ -56,7 +58,7 @@ void rotate_stepper (){
 void rotate_stepper (int turn_degrees){
     int mimimum_pulse_delay = 10;
     int number_of_pulses = 0;
-    for (int i=1; i<=800; i++){
+    for (int i=1; i<=pulses_per_revolution; i++){
         outputs[3].set_high();
         sleep_for(microseconds (mimimum_pulse_delay));
         outputs[3].set_low();
@@ -64,4 +66,36 @@ void rotate_stepper (int turn_degrees){
         number_of_pulses ++;
     }
     cout<< number_of_pulses;
+}
+
+bool stepper_driver_in_error (){
+    if (inputs[1].get_status() == true){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void open_door(){
+    if (stepper_driver_in_error () == true){
+        printf ("/n error stepper driver");
+        return;
+    }else{
+
+    }
+
+}
+
+void accelerate_motor_to_speed (int speed_in_percent) {
+    int initial_speed = 500;
+    int variable_pulse_delay = initial_speed;
+    int terminal_speed = ((min_pulse_delay *100)/speed_in_percent);
+         
+    for (int i=1; i<= pulses_per_revolution*3; i++){
+        outputs [3].set_high();
+        sleep_for(microseconds (variable_pulse_delay));
+        outputs [3].set_low();
+        sleep_for(microseconds (variable_pulse_delay));
+
+    }
 }
