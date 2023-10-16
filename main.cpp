@@ -5,10 +5,12 @@ using namespace std::this_thread;
 using namespace std::chrono;
 
 int pulses_per_revolution = 800;
+int pulse_delay = 100;
 int min_pulse_delay = 10; //microseconds
 void test_motor_enable_bit();
 void rotate_stepper(int turn_degrees);
 void enable_motor_control();
+void disable_motor_control();
 void accelerate_motor_to_speed (int speed_in_percent);
 void set_motor_direction_clockwise();
 void set_motor_direction_counterClockwise();
@@ -20,12 +22,16 @@ int main (){
 
   //  test_motor_enable_bit();
     enable_motor_control();
-    set_motor_direction_clockwise();
+   // disable_motor_control();
+    
     //set_motor_direction_counterClockwise();
-    rotate_stepper(7);
+    for (int i = 0; i<10; i++){
+        set_motor_direction_clockwise();
+    rotate_stepper(3);
 
     set_motor_direction_counterClockwise();
-    rotate_stepper(7);
+    rotate_stepper(3);
+    }
   //  for (int i=1; i<=20; i++){
       //  rotate_stepper(10);
         my_delay(2);
@@ -65,7 +71,10 @@ void rotate_stepper (){
 }
 */
 void rotate_stepper (int turn_degrees){
-    int mimimum_pulse_delay = 5;
+
+    int mimimum_pulse_delay = 10000;
+    mimimum_pulse_delay = pulse_delay;
+    
     int number_of_pulses = 0;
     for (int x=1; x<=turn_degrees; x++){
         for (int i=1; i<=pulses_per_revolution; i++){
