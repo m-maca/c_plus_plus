@@ -5,7 +5,7 @@ using namespace std::this_thread;
 using namespace std::chrono;
 
 int pulses_per_revolution = 800;
-int pulse_delay = 100;
+int pulse_delay = 500;
 int min_pulse_delay = 10; //microseconds
 void test_motor_enable_bit();
 void rotate_stepper(int turn_degrees);
@@ -22,12 +22,12 @@ int main (){
 
   //  test_motor_enable_bit();
     enable_motor_control();
-   // disable_motor_control();
+    disable_motor_control();
     
     //set_motor_direction_counterClockwise();
     for (int i = 0; i<10; i++){
         set_motor_direction_clockwise();
-    rotate_stepper(3);
+   // rotate_stepper(3);
 
     set_motor_direction_counterClockwise();
     rotate_stepper(3);
