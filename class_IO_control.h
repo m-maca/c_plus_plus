@@ -13,6 +13,7 @@ class IO_control {
         void set_high ();
         void set_low ();
         bool get_initialized_status ();
+        void blink_led_internal_user_led ();
 
     private: 
         int type_num, group_num, io_num;
@@ -24,7 +25,47 @@ class IO_control {
         string get_IO_name ();
         string initialize_name ();
         void print_me (string to_be_printed);
+        int internal_counter_1;
+        bool tick_tock;
+        void increment_internal_counter ();
+        void reset_internal_counter ();
+        void get_internal_counter ();
 };
+void IO_control::increment_internal_counter(){
+    internal_counter_1 ++;
+}
+void IO_control::reset_internal_counter(){
+    internal_counter_1 = 0;
+}
+int IO_control::get_internal_counter(){
+    return internal_counter_1 = 0;
+}
+void IO_control::blink_led_internal_user_led(){
+    check_internal_counter_for_overflow();
+    increment_internal_counter();
+    blink_led ();
+}
+void IO_control::check_internal_counter_for_overflow(){
+    if (internal_counter_1> 30000){
+        internal_counter_1 = 0;
+    }
+}
+
+void IO_control::blink_led(){
+    if (internal_counter_1 > 20000){
+        internal_counter_1 = 0;
+        if (tick_tock == true){
+            tick_tock == false;
+        }else{
+            tick_tock = true;
+        }
+    }
+    if (tick_tock == true){
+        this.set_low;
+    }else{
+        this.set_high;
+    }
+}
 
 IO_control::IO_control(){
     

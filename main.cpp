@@ -4,27 +4,28 @@ using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
 
-int pulses_per_revolution = 800;
-int pulse_delay = 2500;
-int min_pulse_delay = 10; //microseconds
-void test_motor_enable_bit();
-void rotate_stepper();
-void enable_motor_control();
-void disable_motor_control();
-void accelerate_motor_to_speed (int speed_in_percent);
-void set_motor_direction_clockwise();
-void set_motor_direction_counterClockwise();
-void test_unipi_timming(){
-    
-}
+void blink_user_led ();
+
+
 
 int main (){
     printf  ("\n here the program main starts\n");
     initialize_all_IOs();
 
-
-  //  if (inputs [])
-
+    while (){
+        blink_user_led (); 
+        if ((inputs2 [1].get_status() == HIGH) && (inputs2 [3].get_status() == HIGH)){
+            relays [4].set_high();
+        }
+        if ((inputs2 [2].get_status() == HIGH) && (inputs2 [4].get_status() == HIGH)){
+            relays [5].set_high();
+        }
+    }
 
     return 0;
+}
+
+void blink_user_led (){
+    internal_LEDs [2].set_high();
+    
 }
