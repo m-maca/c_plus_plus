@@ -26,12 +26,13 @@ class IO_control {
         string initialize_name ();
         void print_me (string to_be_printed);
         int internal_counter_1;
-        bool tick_tock;
+        bool tick_tock=false;
         void check_internal_counter_for_overflow();
         void increment_internal_counter ();
         void reset_internal_counter ();
         int get_internal_counter ();
         void blink_led ();
+        void set_led_state ();
 };
 
 void IO_control::check_internal_counter_for_overflow(){
@@ -42,6 +43,8 @@ void IO_control::check_internal_counter_for_overflow(){
 
 void IO_control::increment_internal_counter(){
     internal_counter_1 ++;
+  //  print_me ("internal_counter");
+
 }
 void IO_control::reset_internal_counter(){
     internal_counter_1 = 0;
@@ -49,26 +52,35 @@ void IO_control::reset_internal_counter(){
 int IO_control::get_internal_counter(){
     return internal_counter_1 = 0;
 }
+
+void IO_control::set_led_state(){
+    if (tick_tock == false){
+        (*this).set_low();
+        print_me("internal LED set LOW");
+    }else if (tick_tock == true){
+        (*this).set_high();
+        print_me("internal LED set HIGH");
+    }
+}
 void IO_control::blink_internal_user_led(){
     check_internal_counter_for_overflow();
     increment_internal_counter();
     blink_led ();
+    set_led_state();
 }
 
 
 void IO_control::blink_led(){
-    if (internal_counter_1 > 20000){
+    if (internal_counter_1 > 10){
+        print_me ("change state");
         internal_counter_1 = 0;
-        if (tick_tock == true){
-            tick_tock == false;
-        }else{
+        if (tick_tock == false){
             tick_tock = true;
+            print_me ("set tick tock to true");
+        }else if (tick_tock == true){
+            tick_tock = false;
+            print_me ("set tick tock to false");
         }
-    }
-    if (tick_tock == true){
-        this.set_low;
-    }else{
-        this.set_high;
     }
 }
 

@@ -10,6 +10,7 @@ int main (){
     initialize_all_IOs();
     bool run_program = true;
     while (run_program == true){
+        internal_LEDs [3].set_high();
         internal_LEDs [2].blink_internal_user_led(); 
         if ((inputs2 [1].get_status() == true) && (inputs2 [3].get_status() == true)){
             relays [4].set_high();
