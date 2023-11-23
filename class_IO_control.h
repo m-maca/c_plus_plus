@@ -71,7 +71,7 @@ void IO_control::blink_internal_user_led(){
 
 
 void IO_control::blink_led(){
-    if (internal_counter_1 > 10){
+    if (internal_counter_1 > 5000){
         print_me ("change state");
         internal_counter_1 = 0;
         if (tick_tock == false){
